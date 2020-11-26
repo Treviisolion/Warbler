@@ -206,6 +206,8 @@ def add_follow(follow_id):
     g.user.following.append(followed_user)
     db.session.commit()
 
+    flash(f"Now following {followed_user.username}", "success")
+
     return redirect(f"/users/{g.user.id}/following")
 
 
@@ -220,6 +222,8 @@ def stop_following(follow_id):
     followed_user = User.query.get(follow_id)
     g.user.following.remove(followed_user)
     db.session.commit()
+
+    flash(f"No longer following {followed_user.username}", "success")
 
     return redirect(f"/users/{g.user.id}/following")
 
@@ -337,6 +341,7 @@ def messages_add():
         g.user.messages.append(msg)
         db.session.commit()
 
+        flash("Created message", "success")
         return redirect(f"/users/{g.user.id}")
 
     return render_template('messages/new.html', form=form)
@@ -361,6 +366,8 @@ def messages_destroy(message_id):
     msg = Message.query.get(message_id)
     db.session.delete(msg)
     db.session.commit()
+
+    flash("Deleted message.", "success")
 
     return redirect(f"/users/{g.user.id}")
 

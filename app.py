@@ -197,6 +197,7 @@ def show_likes(user_id):
 @app.route('/users/follow/<int:follow_id>', methods=['POST'])
 def add_follow(follow_id):
     """Add a follow for the currently-logged-in user."""
+    # TODO: Add handling for if someone tries to follow a user they are already following
 
     if not g.user:
         flash("Access unauthorized.", "danger")
@@ -232,6 +233,7 @@ def stop_following(follow_id):
 def add_like(message_id):
     """Add like to specified message if not made by current_user"""
     # TODO: Add validation to prevent bot liking
+    # TODO: Add handling for if someone tries to like a message they have already liked
 
     if not g.user:
         flash("Access unauthorized.", "danger")
@@ -352,7 +354,11 @@ def messages_show(message_id):
     """Show a message."""
 
     msg = Message.query.get(message_id)
-    return render_template('messages/show.html', message=msg, user=g.user, likes=[like.id for like in g.user.likes], len=len)
+    if g.user:
+        likes = [like.id for like in g.user.likes]
+    else:
+        likes = []
+    return render_template('messages/show.html', message=msg, user=g.user, likes=likes, len=len)
 
 
 @app.route('/messages/<int:message_id>/delete', methods=["POST"])

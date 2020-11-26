@@ -30,6 +30,7 @@
             {% endif %}
           </div>
           <p class="single-message">{{ message.text }}</p>
+          {% if g.user %}
           {% if message.user is ne user %}
           <form method="POST" action="/users/{{'remove_like' if message.id in likes else 'add_like'}}/{{ message.id }}">
             <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
@@ -40,10 +41,17 @@
           </form>
           {% else %}
           <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
-            <p class="btn btn-sm btn-primary">
-              <i class="fa fa-thumbs-up"></i>
-            </p>
-            <span class="text-muted">{{ len(message.liked_by) }}</span>
+          <button class="btn btn-sm btn-primary">
+            <i class="fa fa-thumbs-up"></i>
+          </button>
+          <span class="text-muted">{{ len(message.liked_by) }}</span>
+          {% endif %}
+          {% else %}
+          <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
+          <button class="btn btn-sm btn-secondary">
+            <i class="fa fa-thumbs-up"></i>
+          </button>
+          <span class="text-muted">{{ len(message.liked_by) }}</span>
           {% endif %}
         </div>
       </li>

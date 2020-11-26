@@ -209,6 +209,8 @@ def stop_following(follow_id):
     return redirect(f"/users/{g.user.id}/following")
 
 
+
+
 @app.route('/users/profile', methods=["GET", "POST"])
 def profile():
     """Update profile for current user."""
@@ -284,7 +286,7 @@ def messages_show(message_id):
     """Show a message."""
 
     msg = Message.query.get(message_id)
-    return render_template('messages/show.html', message=msg)
+    return render_template('messages/show.html', message=msg, user=g.user)
 
 
 @app.route('/messages/<int:message_id>/delete', methods=["POST"])

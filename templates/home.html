@@ -50,19 +50,13 @@
           <p>{{ msg.text }}</p>
         </div>
         {% if msg.user is ne g.user %}
-        {% if msg.id in likes %}
-        <form method="POST" action="/users/remove_like/{{ msg.id }}" id="messages-form">
-          <button class="btn btn-sm btn-primary">
+        <form method="POST" action="/users/{{'remove_like' if msg.id in likes else 'add_like'}}/{{ msg.id }}"
+          id="messages-form">
+          <span class="text-muted">{{ len(msg.liked_by) }}</span>
+          <button class="btn btn-sm {{'btn-primary' if msg.id in likes else 'btn-secondary'}}">
             <i class="fa fa-thumbs-up"></i>
           </button>
         </form>
-        {% else %}
-        <form method="POST" action="/users/add_like/{{ msg.id }}" id="messages-form">
-          <button class="btn btn-sm btn-secondary">
-            <i class="fa fa-thumbs-up"></i>
-          </button>
-        </form>
-        {% endif %}
         {% endif %}
       </li>
       {% endfor %}

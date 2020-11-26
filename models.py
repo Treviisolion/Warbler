@@ -197,6 +197,8 @@ class Message(db.Model):
 
     user = db.relationship('User')
 
+    liked_by = db.relationship('User', secondary="likes")
+
 
 def connect_db(app):
     """Connect this database to provided Flask app.

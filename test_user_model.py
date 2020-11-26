@@ -28,6 +28,9 @@ from app import app
 
 db.create_all()
 
+# Prevents any redirects from happening even if tests are run in development mode
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+
 
 class UserModelTestCase(TestCase):
     """Test views for messages."""

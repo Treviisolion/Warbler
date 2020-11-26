@@ -32,6 +32,9 @@ db.create_all()
 
 app.config['WTF_CSRF_ENABLED'] = False
 
+# Prevents any redirects from happening even if tests are run in development mode
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+
 
 class MessageViewTestCase(TestCase):
     """Test views for messages."""

@@ -5,7 +5,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
 from forms import UserAddForm, LoginForm, MessageForm, EditUserForm
-from models import db, connect_db, User, Message
+from models import db, connect_db, User, Message, Likes
 
 CURR_USER_KEY = "curr_user"
 
@@ -152,7 +152,11 @@ def users_show(user_id):
                 .order_by(Message.timestamp.desc())
                 .limit(100)
                 .all())
-    return render_template('users/show.html', user=user, messages=messages)
+    if g.user:
+        likes = [like.id for like in g.user.likes]
+    else:
+        likes = []
+    return render_template('users/show.html', user=user, messages=messages, likes=likes)
 
 
 @app.route('/users/<int:user_id>/following')
@@ -208,8 +212,49 @@ def stop_following(follow_id):
 
     return redirect(f"/users/{g.user.id}/following")
 
+@app.route('/users/add_like/<int:message_id>', methods=['POST'])
+def add_like(message_id):
+    """Add like to specified message if not made by current_user"""
+    # TODO: Add validation to prevent bot liking
 
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
 
+    message = Message.query.get_or_404(message_id)
+
+    if g.user == message.user:
+        flash("Can't like your own posts.", "danger")
+        return redirect("/")
+
+    new_like = Likes(user_id=g.user.id, message_id=message_id)
+    db.session.add(new_like)
+    db.session.commit()
+
+    flash(f"Liked: {message.text}", "success")
+    return redirect("/")
+
+@app.route('/users/remove_like/<int:message_id>', methods=['POST'])
+def remove_like(message_id):
+    """Remove like from specified message if not made by current_user"""
+    # TODO: Add validation to prevent bot liking
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    message = Message.query.get_or_404(message_id)
+
+    if g.user == message.user:
+        flash("Can't unlike your own posts.", "danger")
+        return redirect("/")
+
+    like = Likes.query.get_or_404({"user_id": g.user.id, "message_id": message_id})
+    db.session.delete(like)
+    db.session.commit()
+
+    flash(f"Unliked: {message.text}", "success")
+    return redirect("/")
 
 @app.route('/users/profile', methods=["GET", "POST"])
 def profile():
@@ -222,7 +267,8 @@ def profile():
     form = EditUserForm(obj=g.user)
 
     if form.validate_on_submit():
-        user = User.authenticate(username=g.user.username, password=form.password.data)
+        user = User.authenticate(
+            username=g.user.username, password=form.password.data)
         if user:
             user.email = form.email.data
             user.username = form.username.data
@@ -286,7 +332,7 @@ def messages_show(message_id):
     """Show a message."""
 
     msg = Message.query.get(message_id)
-    return render_template('messages/show.html', message=msg, user=g.user)
+    return render_template('messages/show.html', message=msg, user=g.user, likes=[like.id for like in g.user.likes])
 
 
 @app.route('/messages/<int:message_id>/delete', methods=["POST"])
@@ -326,7 +372,7 @@ def homepage():
                     .limit(100)
                     .all())
 
-        return render_template('home.html', messages=messages)
+        return render_template('home.html', messages=messages, likes=[like.id for like in g.user.likes])
 
     else:
         return render_template('home-anon.html')

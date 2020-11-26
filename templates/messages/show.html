@@ -8,7 +8,7 @@
     <ul class="list-group no-hover" id="messages">
       <li class="list-group-item">
         <a href="{{ url_for('users_show', user_id=message.user.id) }}">
-          <img src="{{ message.user.image_url }}" alt="" class="timeline-image">
+          <img src="{{ message.user.image_url }}" alt="{{ message.user.username }} image" class="timeline-image">
         </a>
         <div class="message-area">
           <div class="message-heading">

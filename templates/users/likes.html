@@ -9,7 +9,7 @@
       <a href="/messages/{{ message.id }}" class="message-link"></a>
 
       <a href="/users/{{ message.user.id }}">
-        <img src="{{ message.user.image_url }}" alt="user image" class="timeline-image">
+        <img src="{{ message.user.image_url }}" alt="{{ message.user.username }} image" class="timeline-image">
       </a>
 
       <div class="message-area">

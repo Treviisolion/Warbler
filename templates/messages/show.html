@@ -38,6 +38,12 @@
             </button>
             <span class="text-muted">{{ len(message.liked_by) }}</span>
           </form>
+          {% else %}
+          <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
+            <p class="btn btn-sm btn-primary">
+              <i class="fa fa-thumbs-up"></i>
+            </p>
+            <span class="text-muted">{{ len(message.liked_by) }}</span>
           {% endif %}
         </div>
       </li>

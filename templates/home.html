@@ -42,7 +42,7 @@
       <li class="list-group-item">
         <a href="/messages/{{ msg.id  }}" class="message-link"></a>
         <a href="/users/{{ msg.user.id }}">
-          <img src="{{ msg.user.image_url }}" alt="" class="timeline-image">
+          <img src="{{ msg.user.image_url }}" alt="{{ msg.user.username }} profile" class="timeline-image">
         </a>
         <div class="message-area">
           <a href="/users/{{ msg.user.id }}">@{{ msg.user.username }}</a>
@@ -57,6 +57,13 @@
             <i class="fa fa-thumbs-up"></i>
           </button>
         </form>
+        {% else %}
+        <div id="messages-form">
+          <span class="text-muted">{{ len(msg.liked_by) }}</span>
+          <button class="btn btn-sm btn-primary">
+            <i class="fa fa-thumbs-up"></i>
+          </button>
+        </div>
         {% endif %}
       </li>
       {% endfor %}

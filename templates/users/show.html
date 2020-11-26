@@ -25,6 +25,13 @@
           <i class="fa fa-thumbs-up"></i>
         </button>
       </form>
+      {% else %}
+      <div id="messages-form">
+        <span class="text-muted">{{ len(message.liked_by) }}</span>
+        <button class="btn btn-sm btn-primary">
+          <i class="fa fa-thumbs-up"></i>
+        </button>
+      </div>
       {% endif %}
     </li>
 

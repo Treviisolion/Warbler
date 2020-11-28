@@ -26,10 +26,14 @@ from app import app
 # once for all tests --- in each test, we'll delete the data
 # and create fresh new clean test data
 
+db.drop_all()
 db.create_all()
 
 # Prevents any redirects from happening even if tests are run in development mode
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+
+# In case autocorrect changes order of imporation
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///warbler-test'
 
 
 class UserModelTestCase(TestCase):

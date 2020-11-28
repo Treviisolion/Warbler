@@ -13,11 +13,11 @@
         <div class="card user-card">
           <div class="card-inner">
             <div class="image-wrapper">
-              <img src="{{ user.header_image_url }}" alt="{{ user.username }} image" class="card-hero">
+              <img src="{{ user.header_image_url }}" alt="" class="card-hero">
             </div>
             <div class="card-contents">
               <a href="/users/{{ user.id }}" class="card-link">
-                <img src="{{ user.image_url }}" alt="Image for {{ user.username }}" class="card-image">
+                <img src="{{ user.image_url }}" alt="{{ user.username }} Image" class="card-image">
                 <p>@{{ user.username }}</p>
               </a>
 

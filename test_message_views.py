@@ -109,10 +109,10 @@ class MessageViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
+            self.assertNotIn('<div class="alert', html)
             self.assertIn("<textarea", html)
             self.assertIn("<button", html)
             self.assertNotIn('<span class="danger">', html)
-            self.assertNotIn('<div class="alert', html)
 
     def test_add_message(self):
         """Can use add a message?"""
@@ -154,6 +154,7 @@ class MessageViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
+            self.assertNotIn('<div class="alert', html)
             self.assertIn(
                 f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
             self.assertIn(
@@ -190,6 +191,7 @@ class MessageViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
+            self.assertNotIn('<div class="alert', html)
             self.assertIn(
                 f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
             self.assertIn(
@@ -209,7 +211,8 @@ class MessageViewTestCase(TestCase):
                 f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
-            self.assertNotIn(f'<button class="btn btn-sm btn-secondary">', html)
+            self.assertNotIn(
+                f'<button class="btn btn-sm btn-secondary">', html)
             self.assertIn(f'<button class="btn btn-sm btn-primary">', html)
             self.assertIn(
                 f'<span class="text-muted">{len(msg.liked_by)}</span>', html)
@@ -226,6 +229,7 @@ class MessageViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
+            self.assertNotIn('<div class="alert', html)
             self.assertIn(
                 f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
             self.assertIn(
@@ -262,6 +266,7 @@ class MessageViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
+            self.assertNotIn('<div class="alert', html)
             self.assertIn(
                 f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
             self.assertIn(
@@ -298,6 +303,7 @@ class MessageViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
+            self.assertNotIn('<div class="alert', html)
             self.assertIn(
                 f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
             self.assertIn(
@@ -317,7 +323,8 @@ class MessageViewTestCase(TestCase):
                 f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
-            self.assertNotIn(f'<button class="btn btn-sm btn-secondary">', html)
+            self.assertNotIn(
+                f'<button class="btn btn-sm btn-secondary">', html)
             self.assertIn(f'<button class="btn btn-sm btn-primary">', html)
             self.assertIn(
                 f'<span class="text-muted">{len(msg.liked_by)}</span>', html)
@@ -334,6 +341,7 @@ class MessageViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
+            self.assertNotIn('<div class="alert', html)
             self.assertIn(
                 f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
             self.assertIn(
@@ -353,7 +361,8 @@ class MessageViewTestCase(TestCase):
                 f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
-            self.assertNotIn(f'<button class="btn btn-sm btn-secondary">', html)
+            self.assertNotIn(
+                f'<button class="btn btn-sm btn-secondary">', html)
             self.assertIn(f'<button class="btn btn-sm btn-primary">', html)
             self.assertIn(
                 f'<span class="text-muted">{len(msg.liked_by)}</span>', html)

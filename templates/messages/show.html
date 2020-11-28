@@ -37,21 +37,21 @@
             <button class="btn btn-sm {{'btn-primary' if message.id in likes else 'btn-secondary'}}">
               <i class="fa fa-thumbs-up"></i>
             </button>
-            <span class="text-muted">{{ len(message.liked_by) }}</span>
+            <span class="text-muted">{{ message.liked_by | length }}</span>
           </form>
           {% else %}
           <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
           <button class="btn btn-sm btn-primary">
             <i class="fa fa-thumbs-up"></i>
           </button>
-          <span class="text-muted">{{ len(message.liked_by) }}</span>
+          <span class="text-muted">{{ message.liked_by | length }}</span>
           {% endif %}
           {% else %}
           <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
           <button class="btn btn-sm btn-secondary">
             <i class="fa fa-thumbs-up"></i>
           </button>
-          <span class="text-muted">{{ len(message.liked_by) }}</span>
+          <span class="text-muted">{{ message.liked_by | length }}</span>
           {% endif %}
         </div>
       </li>

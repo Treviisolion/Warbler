@@ -156,7 +156,7 @@ def users_show(user_id):
         likes = [like.id for like in g.user.likes]
     else:
         likes = []
-    return render_template('users/show.html', user=user, messages=messages, likes=likes, len=len)
+    return render_template('users/show.html', user=user, messages=messages, likes=likes)
 
 
 @app.route('/users/<int:user_id>/following')
@@ -168,7 +168,7 @@ def show_following(user_id):
         return redirect("/")
 
     user = User.query.get_or_404(user_id)
-    return render_template('users/following.html', user=user, len=len)
+    return render_template('users/following.html', user=user)
 
 
 @app.route('/users/<int:user_id>/followers')
@@ -180,7 +180,7 @@ def show_followers(user_id):
         return redirect("/")
 
     user = User.query.get_or_404(user_id)
-    return render_template('users/followers.html', user=user, len=len)
+    return render_template('users/followers.html', user=user)
 
 @app.route('/users/<int:user_id>/likes')
 def show_likes(user_id):
@@ -191,7 +191,7 @@ def show_likes(user_id):
         return redirect("/")
 
     user = User.query.get_or_404(user_id)
-    return render_template('users/likes.html', user=user, messages=user.likes, likes=[like.id for like in g.user.likes], len=len)
+    return render_template('users/likes.html', user=user, messages=user.likes, likes=[like.id for like in g.user.likes])
 
 
 @app.route('/users/follow/<int:follow_id>', methods=['POST'])
@@ -358,7 +358,7 @@ def messages_show(message_id):
         likes = [like.id for like in g.user.likes]
     else:
         likes = []
-    return render_template('messages/show.html', message=msg, user=g.user, likes=likes, len=len)
+    return render_template('messages/show.html', message=msg, user=g.user, likes=likes)
 
 
 @app.route('/messages/<int:message_id>/delete', methods=["POST"])
@@ -400,7 +400,7 @@ def homepage():
                     .limit(100)
                     .all())
 
-        return render_template('home.html', messages=messages, likes=[like.id for like in g.user.likes], len=len)
+        return render_template('home.html', messages=messages, likes=[like.id for like in g.user.likes])
 
     else:
         return render_template('home-anon.html')

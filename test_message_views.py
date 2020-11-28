@@ -156,22 +156,22 @@ class MessageViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertNotIn('<div class="alert', html)
             self.assertIn(
-                f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
+                f'<a href="{url_for("users_show", user_id=msg.user_id)}"', html)
             self.assertIn(
-                f'<img src="{msg.user.image_url}" alt="{msg.user.username} image', html)
+                f'<img src="{msg.user.image_url}" alt="{msg.user.username} image"', html)
             self.assertIn(
                 f'<a href="/users/{msg.user.id}">@{msg.user.username}</a>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/messages/{msg.id}/delete">', html)
+                f'<form method="POST" action="/messages/{msg.id}/delete"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/stop-following/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/stop-following/{msg.user.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/follow/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/follow/{msg.user.id}"', html)
             self.assertIn(f'<p class="single-message">{msg.text}</p>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/add_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/add_like/{msg.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/remove_like/{msg.id}"', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
             self.assertIn(f'<button class="btn btn-sm btn-secondary">', html)
@@ -193,22 +193,22 @@ class MessageViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertNotIn('<div class="alert', html)
             self.assertIn(
-                f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
+                f'<a href="{url_for("users_show", user_id=msg.user_id)}"', html)
             self.assertIn(
                 f'<img src="{msg.user.image_url}" alt="{msg.user.username} image', html)
             self.assertIn(
                 f'<a href="/users/{msg.user.id}">@{msg.user.username}</a>', html)
             self.assertIn(
-                f'<form method="POST" action="/messages/{msg.id}/delete">', html)
+                f'<form method="POST" action="/messages/{msg.id}/delete"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/stop-following/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/stop-following/{msg.user.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/follow/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/follow/{msg.user.id}"', html)
             self.assertIn(f'<p class="single-message">{msg.text}</p>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/add_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/add_like/{msg.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/remove_like/{msg.id}"', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
             self.assertNotIn(
@@ -231,22 +231,22 @@ class MessageViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertNotIn('<div class="alert', html)
             self.assertIn(
-                f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
+                f'<a href="{url_for("users_show", user_id=msg.user_id)}"', html)
             self.assertIn(
                 f'<img src="{msg.user.image_url}" alt="{msg.user.username} image', html)
             self.assertIn(
                 f'<a href="/users/{msg.user.id}">@{msg.user.username}</a>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/messages/{msg.id}/delete">', html)
+                f'<form method="POST" action="/messages/{msg.id}/delete"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/stop-following/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/stop-following/{msg.user.id}"', html)
             self.assertIn(
-                f'<form method="POST" action="/users/follow/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/follow/{msg.user.id}"', html)
             self.assertIn(f'<p class="single-message">{msg.text}</p>', html)
             self.assertIn(
-                f'<form method="POST" action="/users/add_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/add_like/{msg.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/remove_like/{msg.id}"', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
             self.assertIn(f'<button class="btn btn-sm btn-secondary">', html)
@@ -268,22 +268,22 @@ class MessageViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertNotIn('<div class="alert', html)
             self.assertIn(
-                f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
+                f'<a href="{url_for("users_show", user_id=msg.user_id)}"', html)
             self.assertIn(
                 f'<img src="{msg.user.image_url}" alt="{msg.user.username} image', html)
             self.assertIn(
                 f'<a href="/users/{msg.user.id}">@{msg.user.username}</a>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/messages/{msg.id}/delete">', html)
+                f'<form method="POST" action="/messages/{msg.id}/delete"', html)
             self.assertIn(
-                f'<form method="POST" action="/users/stop-following/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/stop-following/{msg.user.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/follow/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/follow/{msg.user.id}"', html)
             self.assertIn(f'<p class="single-message">{msg.text}</p>', html)
             self.assertIn(
-                f'<form method="POST" action="/users/add_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/add_like/{msg.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/remove_like/{msg.id}"', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
             self.assertIn(f'<button class="btn btn-sm btn-secondary">', html)
@@ -305,22 +305,22 @@ class MessageViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertNotIn('<div class="alert', html)
             self.assertIn(
-                f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
+                f'<a href="{url_for("users_show", user_id=msg.user_id)}"', html)
             self.assertIn(
                 f'<img src="{msg.user.image_url}" alt="{msg.user.username} image', html)
             self.assertIn(
                 f'<a href="/users/{msg.user.id}">@{msg.user.username}</a>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/messages/{msg.id}/delete">', html)
+                f'<form method="POST" action="/messages/{msg.id}/delete"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/stop-following/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/stop-following/{msg.user.id}"', html)
             self.assertIn(
-                f'<form method="POST" action="/users/follow/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/follow/{msg.user.id}"', html)
             self.assertIn(f'<p class="single-message">{msg.text}</p>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/add_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/add_like/{msg.id}"', html)
             self.assertIn(
-                f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/remove_like/{msg.id}"', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
             self.assertNotIn(
@@ -343,22 +343,22 @@ class MessageViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertNotIn('<div class="alert', html)
             self.assertIn(
-                f'<a href="{url_for("users_show", user_id=msg.user_id)}">', html)
+                f'<a href="{url_for("users_show", user_id=msg.user_id)}"', html)
             self.assertIn(
                 f'<img src="{msg.user.image_url}" alt="{msg.user.username} image', html)
             self.assertIn(
                 f'<a href="/users/{msg.user.id}">@{msg.user.username}</a>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/messages/{msg.id}/delete">', html)
+                f'<form method="POST" action="/messages/{msg.id}/delete"', html)
             self.assertIn(
-                f'<form method="POST" action="/users/stop-following/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/stop-following/{msg.user.id}"', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/follow/{msg.user.id}">', html)
+                f'<form method="POST" action="/users/follow/{msg.user.id}"', html)
             self.assertIn(f'<p class="single-message">{msg.text}</p>', html)
             self.assertNotIn(
-                f'<form method="POST" action="/users/add_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/add_like/{msg.id}"', html)
             self.assertIn(
-                f'<form method="POST" action="/users/remove_like/{msg.id}">', html)
+                f'<form method="POST" action="/users/remove_like/{msg.id}"', html)
             self.assertIn(
                 f'<span class="text-muted">{msg.timestamp.strftime("%d %B %Y")}</span>', html)
             self.assertNotIn(
